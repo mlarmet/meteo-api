@@ -1,0 +1,125 @@
+@font-face {
+    font-family: "logo";
+    src: url('../fonts/ONEDAY.otf') format('opentype');
+}
+
+@font-face {
+    font-family: "sk";
+    src: url('../fonts/Sk-Modernist-Bold.otf') format('opentype');
+}
+
+body {
+    font-family: "sk";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#renseignements {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+#renseignements h1 {
+    min-width: max-content;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0.5em 1em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#infos {
+    display: none;
+    justify-content: center;
+    width: 100%;
+    flex-flow: row wrap;
+    margin-top: 2em;
+}
+
+.prevision {
+    padding: 1em 0.5em;
+    width: 12.5em;
+    min-width: min-content;
+    border: 2px solid black;
+    border-radius: 16px;
+    margin: 1em;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.prevision hr {
+    width: 100%;
+    border: 1px solid black;
+}
+
+.prevision h3 {
+    margin: 0;
+}
+
+#temperature {
+    display: flex;
+    flex-flow: column wrap;
+    width: min-content;
+    align-items: center;
+}
+
+#temperature hr {
+    border: 1px solid black;
+    width: 30px;
+    padding: 0;
+    margin: 0.5em 0;
+}
+
+#temperature p {
+    margin: 0;
+}
+
+#meteo {
+    text-align: center;
+    word-wrap: break-word;
+}
+
+#tmin {
+    color: red;
+}
+
+
+/* Augmente l'espacement gauche et droite des suggestions */
+
+.suggestion,
+.more {
+    padding-left: 2px;
+    padding-right: 2px;
+    margin: 0.5em 0;
+}
+
+
+/* Modifie la couleur de la suggestion survolée par la souris */
+
+.suggestion:hover {
+    background-color: #adf;
+    cursor: pointer;
+}
+
+
+/* Positionne la liste des suggestions au-dessous de la zone de saisie */
+
+#code {
+    width: 20em;
+}
+
+#suggestions {
+    background-color: white;
+    border: 0px solid black;
+    font-size: medium;
+    position: absolute;
+}

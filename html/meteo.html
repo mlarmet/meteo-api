@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Meteo</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+</head>
+
+<body>
+
+    <div id="renseignements">
+        <h1>Code postal de la ville :</h1>
+        <form>
+            <div id="entry">
+                <input type="text" name="code" id="code" placeholder="Saisissez le code postal" required>
+                <div id="suggestions"></div>
+            </div>
+
+            <p>
+                <input type="radio" name="mode" id="deux-semaines" value="deux-semaines" checked>
+                <label for="deux-semaine">2 semaines</label>
+                <input type="radio" name="mode" id="le-jour" value="le-jour">
+                <label for="le-jour">Météo du jour</label>
+                <input type="radio" name="mode" id="par-heure" value="par-heure">
+                <label for="par-heure">Météo par heure</label>
+            </p>
+        </form>
+    </div>
+    <div id="infos">
+
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/ajax.js"></script>
+    <script src="../js/meteo.js"></script>
+</body>
+
+</html>
