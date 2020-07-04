@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Meteo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
@@ -17,17 +18,192 @@
                 <div id="suggestions"></div>
             </div>
 
-            <p>
+            <p id="pc-choice">
                 <input type="radio" name="mode" id="deux-semaines" value="deux-semaines" checked>
                 <label for="deux-semaine">2 semaines</label>
                 <input type="radio" name="mode" id="le-jour" value="le-jour">
                 <label for="le-jour">Météo du jour</label>
-                <input type="radio" name="mode" id="par-heure" value="par-heure">
-                <label for="par-heure">Météo par heure</label>
+                <input type="radio" name="mode" id="par-tranche" value="par-tranche">
+                <label for="par-heure">Météo par tranche</label>
             </p>
+
+            <select id="mobile-choice">
+                <option value="deux-semaines">2 semaines</option>
+                <option value="le-jour">Ce jour</option>
+                <option value="par-tranche">Par tranche</option>
+            </select>
         </form>
     </div>
+
+    <!-- <h2 id="nom">Louargat</h2> -->
+
     <div id="infos">
+        <!-- <div class="prevision">
+            <p>Aujourd'hui</p>
+            <p id="meteo">Nuageux</p>
+
+            <div id="temperature">
+                <p id="tmin">10°C</p>
+                <hr/>
+                <p>20°C</p>
+
+            </div>
+        </div>
+
+        <div class="prevision">
+            <p>Demain</p>
+            <p id="meteo">Pluit modérée mais attention</p>
+
+            <div id="temperature">
+                <p id="tmin">11°C</p>
+                <hr/>
+                <p>20°C</p>
+
+            </div>
+        </div>
+
+        <div class="prevision">
+            <p>Dans 2 jours</p>
+            <p id="meteo">Nuageux</p>
+
+            <div id="temperature">
+                <p id="tmin">10°C</p>
+                <hr/>
+                <p>20°C</p>
+
+            </div>
+        </div>
+
+        <div class="prevision">
+            <p>Dans 3 jours</p>
+            <p id="meteo">Nuageux</p>
+
+            <div id="temperature">
+                <p id="tmin">10°C</p>
+                <hr/>
+                <p>20°C</p>
+
+            </div>
+        </div>
+
+        <div class="prevision">
+            <p>Dans 10 jours</p>
+            <p id="meteo">Nuageux</p>
+
+            <div id="temperature">
+                <p id="tmin">10°C</p>
+                <hr/>
+                <p>20°C</p>
+
+            </div>
+        </div>
+
+        <div class="prevision">
+            <p>Dans 13 jours</p>
+            <p id="meteo">Nuageux</p>
+
+            <div id="temperature">
+                <p id="tmin">10°C</p>
+                <hr/>
+                <p>20°C</p>
+
+            </div>
+        </div>
+        <div class="prevision">
+            <p>Aujourd'hui</p>
+            <p id="meteo">Nuageux</p>
+
+            <div id="temperature">
+                <p id="tmin">10°C</p>
+                <hr/>
+                <p>20°C</p>
+
+            </div>
+        </div>
+
+        <div class="prevision">
+            <p>Demain</p>
+            <p id="meteo">Pluit modérée mais attention</p>
+
+            <div id="temperature">
+                <p id="tmin">11°C</p>
+                <hr/>
+                <p>20°C</p>
+
+            </div>
+        </div>
+
+        <div class="prevision">
+            <p>Dans 2 jours</p>
+            <p id="meteo">Nuageux</p>
+
+            <div id="temperature">
+                <p id="tmin">10°C</p>
+                <hr/>
+                <p>20°C</p>
+
+            </div>
+        </div>
+
+        <div class="prevision">
+            <p>Dans 3 jours</p>
+            <p id="meteo">Nuageux</p>
+
+            <div id="temperature">
+                <p id="tmin">10°C</p>
+                <hr/>
+                <p>20°C</p>
+
+            </div>
+        </div>
+
+        <div class="prevision">
+            <p>Dans 10 jours</p>
+            <p id="meteo">Nuageux</p>
+
+            <div id="temperature">
+                <p id="tmin">10°C</p>
+                <hr/>
+                <p>20°C</p>
+
+            </div>
+        </div>
+
+        <div class="prevision">
+            <p>Dans 13 jours</p>
+            <p id="meteo">Nuageux</p>
+
+            <div id="temperature">
+                <p id="tmin">10°C</p>
+                <hr/>
+                <p>20°C</p>
+
+            </div>
+        </div>
+
+        <div class="prevision">
+            <p>Dans 10 jours</p>
+            <p id="meteo">Nuageux</p>
+
+            <div id="temperature">
+                <p id="tmin">10°C</p>
+                <hr/>
+                <p>20°C</p>
+
+            </div>
+        </div>
+
+        <div class="prevision">
+            <p>Dans 13 jours</p>
+            <p id="meteo">Nuageux</p>
+
+            <div id="temperature">
+                <p id="tmin">10°C</p>
+                <hr/>
+                <p>20°C</p>
+
+            </div>
+        </div> -->
 
     </div>
 

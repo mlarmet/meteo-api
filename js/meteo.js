@@ -9,9 +9,11 @@ var maMap = new Map(tableauCodeMeteo);
 
 var deux_semaines = "https://api.meteo-concept.com/api/forecast/daily?token=8b538e7ba129c4ba730f37d2b31a1a37b72d0accf928bb9103e90d4858f5bac2&insee=";
 var le_jour = "https://api.meteo-concept.com/api/forecast/daily/0?token=8b538e7ba129c4ba730f37d2b31a1a37b72d0accf928bb9103e90d4858f5bac2&insee="
-var par_heure = "https://api.meteo-concept.com/api/forecast/nextHours?token=8b538e7ba129c4ba730f37d2b31a1a37b72d0accf928bb9103e90d4858f5bac2&insee="
+var par_tranche = "https://api.meteo-concept.com/api/forecast/daily/0?token=8b538e7ba129c4ba730f37d2b31a1a37b72d0accf928bb9103e90d4858f5bac2&insee="
 
 function getMeteo(ci, selection) {
+
+
 
     switch (selection) {
         case "deux-semaines":
@@ -19,16 +21,17 @@ function getMeteo(ci, selection) {
 
                 var meteo = JSON.parse(reponse);
 
-                //meteo.forecast.forEach(function(jour) {
+                var h3Elt = document.createElement("h3");
+                h3Elt.id = "nom";
+                h3Elt.textContent = meteo.city.name;
+
+                document.body.insertBefore(h3Elt, infosElt);
 
                 for (var i = 0; i < meteo.forecast.length; i++) {
                     infosElt.style.display = "flex";
 
                     var prevElt = document.createElement("div");
                     prevElt.classList.add("prevision");
-
-                    var h3Elt = document.createElement("h3");
-                    h3Elt.textContent = meteo.city.name;
 
                     var jourElt = document.createElement("p");
                     var quelJour;
@@ -58,8 +61,7 @@ function getMeteo(ci, selection) {
                     var tmaxElt = document.createElement("p");
                     tmaxElt.textContent = meteo.forecast[i].tmax + "°C";
 
-                    prevElt.appendChild(h3Elt);
-                    prevElt.appendChild(document.createElement("hr"));
+
                     prevElt.appendChild(jourElt);
                     prevElt.appendChild(meteoElt);
                     tempElt.appendChild(tminElt);
@@ -76,21 +78,23 @@ function getMeteo(ci, selection) {
 
                 var meteo = JSON.parse(reponse);
 
-                //meteo.forecast.forEach(function(jour) {
+                var h3Elt = document.createElement("h3");
+                h3Elt.id = "nom";
+                h3Elt.textContent = meteo.city.name;
+
+                document.body.insertBefore(h3Elt, infosElt);
 
                 infosElt.style.display = "flex";
 
                 var prevElt = document.createElement("div");
                 prevElt.classList.add("prevision");
 
-                var h3Elt = document.createElement("h3");
-                h3Elt.textContent = meteo.city.name;
-
                 var jourElt = document.createElement("p");
                 jourElt.textContent = "Aujourd'hui";
 
                 var meteoElt = document.createElement("p");
                 meteoElt.textContent = maMap.get(meteo.forecast.weather + "");
+                meteoElt.id = "meteo";
 
                 var tempElt = document.createElement("div");
 
@@ -101,8 +105,7 @@ function getMeteo(ci, selection) {
                 var tmaxElt = document.createElement("p");
                 tmaxElt.textContent = meteo.forecast.tmax + "°C";
 
-                prevElt.appendChild(h3Elt);
-                prevElt.appendChild(document.createElement("hr"));
+
                 prevElt.appendChild(jourElt);
                 prevElt.appendChild(meteoElt);
                 tempElt.appendChild(tminElt);
@@ -112,11 +115,10 @@ function getMeteo(ci, selection) {
 
                 infosElt.appendChild(prevElt);
 
-                //});
 
             });
             break;
-        case "par-heure":
+        case "par-tranche":
             break;
     }
 
@@ -125,7 +127,12 @@ function getMeteo(ci, selection) {
 
 function getSelection() {
 
-    return document.querySelector("form").elements.mode.value;
+    if (document.querySelector("form p").style.display === "block") {
+        return document.querySelector("form").elements.mode.value;
+    } else {
+        return document.getElementById("mobile-choice").options[document.getElementById("mobile-choice").selectedIndex].value;
+    }
+
 }
 
 infosElt.addEventListener("submit", function(e) {
