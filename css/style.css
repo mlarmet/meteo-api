@@ -10,7 +10,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding-bottom: 1em;
+    padding: 1em 1em;
 }
 
 body>hr {
@@ -62,11 +62,6 @@ form {
     justify-content: space-between;
     background-color: #F9F9F9;
     box-shadow: 3px 3px 7px lightgrey;
-    border: 1px solid lightgray;
-}
-
-.prevision-spe {
-    border-left: 6px solid #FBFBFB;
 }
 
 .prevision p:first-child,

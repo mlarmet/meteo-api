@@ -99,7 +99,7 @@ function getMeteo(ci) {
                 prevElt.addEventListener("click", function(e) {
 
                     infosElt.childNodes.forEach(fils => {
-                        fils.style.border = "1px solid lightgray";
+                        fils.style.border = "0";
                     });
 
                     prevElt.style.borderTop = "4px solid black";
