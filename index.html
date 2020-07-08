@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="fr">
 
 <head>
     <meta charset="utf-8">
@@ -17,29 +17,34 @@
                 <input type="text" name="code" id="code" placeholder="Saisissez le code postal" required>
                 <div id="suggestions"></div>
             </div>
-
+            <!-- 
             <p id="pc-choice">
                 <input type="radio" name="mode" id="deux-semaines" value="deux-semaines" checked>
-                <label for="deux-semaine">2 semaines</label>
+                <label for="deux-semaines">2 semaines</label>
                 <input type="radio" name="mode" id="le-jour" value="le-jour">
                 <label for="le-jour">Météo du jour</label>
                 <input type="radio" name="mode" id="par-tranche" value="par-tranche">
-                <label for="par-heure">Météo par tranche</label>
+                <label for="par-tranche">Météo par tranche</label>
             </p>
 
             <select id="mobile-choice">
                 <option value="deux-semaines">2 semaines</option>
                 <option value="le-jour">Ce jour</option>
                 <option value="par-tranche">Par tranche</option>
-            </select>
+            </select> -->
         </form>
     </div>
 
     <!-- <h2 id="nom">Louargat</h2> -->
 
+
     <div id="infos">
         <!-- <div class="prevision">
-            <p>Aujourd'hui</p>
+            <div class="jour">
+                <p>Jeu</p>
+                <p>8</p>
+            </div>
+
             <p id="meteo">Nuageux</p>
 
             <div id="temperature">
@@ -206,6 +211,10 @@
         </div> -->
 
     </div>
+
+    <hr/>
+
+    <div id="infos-spe"></div>
 
     <script src="js/data.js"></script>
     <script src="js/ajax.js"></script>

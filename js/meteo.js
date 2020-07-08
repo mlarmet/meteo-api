@@ -1,78 +1,184 @@
 var infosElt = document.getElementById("infos");
+var infosSpeElt = document.getElementById("infos-spe");
+
 var villesTrouve = [];
 var villesUnique = [];
-var inseeVille = null;
-var sugElts = null;
-var cp = null;
+var inseeVille;
+var sugElts;
+var ci;
 
 var maMap = new Map(tableauCodeMeteo);
 
 var deux_semaines = "https://api.meteo-concept.com/api/forecast/daily?token=8b538e7ba129c4ba730f37d2b31a1a37b72d0accf928bb9103e90d4858f5bac2&insee=";
-var le_jour = "https://api.meteo-concept.com/api/forecast/daily/0?token=8b538e7ba129c4ba730f37d2b31a1a37b72d0accf928bb9103e90d4858f5bac2&insee="
-var par_tranche = "https://api.meteo-concept.com/api/forecast/daily/0?token=8b538e7ba129c4ba730f37d2b31a1a37b72d0accf928bb9103e90d4858f5bac2&insee="
+//var le_jour = "https://api.meteo-concept.com/api/forecast/daily/0?token=8b538e7ba129c4ba730f37d2b31a1a37b72d0accf928bb9103e90d4858f5bac2&insee="
+var par_tranche = "https://api.meteo-concept.com/api/forecast/daily/periods?token=8b538e7ba129c4ba730f37d2b31a1a37b72d0accf928bb9103e90d4858f5bac2&insee="
 
-function getMeteo(ci, selection) {
+var days = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
 
+function daysInMonth(year, month) {
+    return new Date(year, month, 0).getDate();
+}
 
+function getMeteo(ci) {
 
-    switch (selection) {
-        case "deux-semaines":
-            ajaxGet(deux_semaines + ci, function(reponse) {
+    infosElt.innerHTML = "";
 
-                var meteo = JSON.parse(reponse);
+    var date = new Date();
 
-                var h3Elt = document.createElement("h3");
-                h3Elt.id = "nom";
-                h3Elt.textContent = meteo.city.name;
+    var dateElt = document.createElement("div");
+    dateElt.classList.add("jour");
 
-                document.body.insertBefore(h3Elt, infosElt);
+    var jourElt = document.createElement("p");
+    jourElt.textContent = "" + days[date.getDay()];
 
-                for (var i = 0; i < meteo.forecast.length; i++) {
-                    infosElt.style.display = "flex";
+    var nbJourElt = document.createElement("p");
+    nbJourElt.textContent = "" + date.getDate();
 
-                    var prevElt = document.createElement("div");
-                    prevElt.classList.add("prevision");
-
-                    var jourElt = document.createElement("p");
-                    var quelJour;
-
-                    switch (meteo.forecast[i].day) {
-                        case 0:
-                            quelJour = "Aurjourd'hui";
-                            break;
-                        case 1:
-                            quelJour = "Demain";
-                            break;
-                        default:
-                            quelJour = "Dans " + meteo.forecast[i].day + " jours";
-                    }
-                    jourElt.textContent = quelJour;
-
-                    var meteoElt = document.createElement("p");
-                    meteoElt.textContent = maMap.get(meteo.forecast[i].weather + "");
-                    meteoElt.id = "meteo";
-
-                    var tempElt = document.createElement("div");
-
-                    var tminElt = document.createElement("p");
-                    tminElt.textContent = meteo.forecast[i].tmin + "°C";
-                    tminElt.id = "tmin";
-
-                    var tmaxElt = document.createElement("p");
-                    tmaxElt.textContent = meteo.forecast[i].tmax + "°C";
+    dateElt.appendChild(jourElt);
+    dateElt.appendChild(nbJourElt);
 
 
-                    prevElt.appendChild(jourElt);
-                    prevElt.appendChild(meteoElt);
-                    tempElt.appendChild(tminElt);
-                    tempElt.appendChild(document.createElement("hr"));
-                    tempElt.appendChild(tmaxElt);
-                    prevElt.appendChild(tempElt);
+    /*switch (selection) {
 
-                    infosElt.appendChild(prevElt);
-                };
-            });
-            break;
+        case "deux-semaines":*/
+    ajaxGet(deux_semaines + ci, function(reponse) {
+
+        var meteo = JSON.parse(reponse);
+
+        var h3Elt = document.createElement("h3");
+        h3Elt.id = "nom";
+        h3Elt.textContent = meteo.city.name;
+
+        document.body.insertBefore(h3Elt, infosElt);
+
+        for (var i = 0; i < 7; i++) {
+            (function() {
+                var prevElt = document.createElement("div");
+                prevElt.classList.add("prevision");
+
+                var meteoElt = document.createElement("p");
+                meteoElt.textContent = maMap.get(meteo.forecast[i].weather + "");
+                meteoElt.classList.add("meteo");
+
+                var tempElt = document.createElement("div");
+                tempElt.classList.add("temperature");
+
+                var tminElt = document.createElement("p");
+                tminElt.textContent = meteo.forecast[i].tmin + "°C";
+
+                var tmaxElt = document.createElement("p");
+                tmaxElt.textContent = meteo.forecast[i].tmax + "°C";
+                tmaxElt.classList.add("tmax");
+
+                var dateElt = document.createElement("div");
+                dateElt.classList.add("jour");
+
+                var jourDansLeMois = (date.getDate() + i) % (daysInMonth(date.getFullYear(), date.getMonth()) + 1);
+
+                var jourElt = document.createElement("p");
+                jourElt.textContent = "" + days[((date.getDay() + i) % 7)];
+
+                var nbJourElt = document.createElement("p");
+                nbJourElt.textContent = "" + jourDansLeMois;
+
+                dateElt.appendChild(jourElt);
+                dateElt.appendChild(nbJourElt);
+
+                prevElt.appendChild(dateElt);
+
+                prevElt.appendChild(meteoElt);
+                tempElt.appendChild(tminElt);
+                tempElt.appendChild(document.createElement("hr"));
+                tempElt.appendChild(tmaxElt);
+                prevElt.appendChild(tempElt);
+
+                infosElt.appendChild(prevElt);
+
+                prevElt.id = i + "jour";
+
+                prevElt.addEventListener("click", function(e) {
+
+                    infosElt.childNodes.forEach(fils => {
+                        fils.style.border = "1px solid lightgray";
+                    });
+
+                    prevElt.style.borderTop = "4px solid black";
+
+                    infosSpeElt.innerHTML = "";
+
+                    var witch = Number(prevElt.id.charAt(0));
+
+                    document.querySelector("body > hr").style.borderTop = "0.5px solid grey";
+
+                    ajaxGet(par_tranche + ci, function(reponse) {
+
+                        var meteo = JSON.parse(reponse);
+
+                        for (var i = 0; i < 4; i++) {
+
+                            var prevSpeElt = document.createElement("div");
+                            prevSpeElt.classList.add("prevision-spe");
+
+                            var trancheElt = document.createElement("p");
+                            var tranche;
+
+                            switch (meteo.forecast[witch][i].period) {
+                                case 0:
+                                    tranche = "02h - 08h";
+                                    break;
+                                case 1:
+                                    tranche = "08h - 14h";
+                                    break;
+                                case 2:
+                                    tranche = "14h - 20h";
+                                    break;
+                                case 3:
+                                    tranche = "20h - 02h";
+                                    break;
+
+                            }
+
+                            if (witch === 0) {
+                                if (i === 0 && (date.getHours() >= 2 && date.getHours() < 8)) {
+                                    prevSpeElt.style.borderLeft = "6px solid black";
+                                } else if (i === 1 && (date.getHours() >= 8 && date.getHours() < 14)) {
+                                    prevSpeElt.style.borderLeft = "6px solid black";
+                                } else if (i === 2 && (date.getHours() >= 14 && date.getHours() < 20)) {
+                                    prevSpeElt.style.borderLeft = "6px solid black";
+                                } else if (i === 3 && ((date.getHours() >= 20 && date.getHours() <= 23) || (date.getHours() >= 0 && date.getHours() < 2))) {
+                                    prevSpeElt.style.borderLeft = "6px solid black";
+                                }
+                            }
+
+
+                            trancheElt.textContent = tranche;
+
+                            var meteoElt = document.createElement("p");
+                            meteoElt.textContent = maMap.get(meteo.forecast[witch][i].weather + "");
+                            meteoElt.classList.add("meteo-spe");
+
+                            var tempElt = document.createElement("div");
+
+                            var tmaxElt = document.createElement("p");
+                            tmaxElt.textContent = meteo.forecast[witch][i].temp2m + "°C";
+
+
+                            prevSpeElt.appendChild(trancheElt);
+                            prevSpeElt.appendChild(meteoElt);
+                            tempElt.appendChild(tmaxElt);
+                            prevSpeElt.appendChild(tempElt);
+
+                            infosSpeElt.appendChild(prevSpeElt);
+                        };
+
+                    });
+
+                });
+
+            }());
+        };
+    });
+    /*break;
         case "le-jour":
             ajaxGet(le_jour + ci, function(reponse) {
 
@@ -84,29 +190,23 @@ function getMeteo(ci, selection) {
 
                 document.body.insertBefore(h3Elt, infosElt);
 
-                infosElt.style.display = "flex";
-
                 var prevElt = document.createElement("div");
                 prevElt.classList.add("prevision");
 
-                var jourElt = document.createElement("p");
-                jourElt.textContent = "Aujourd'hui";
-
                 var meteoElt = document.createElement("p");
                 meteoElt.textContent = maMap.get(meteo.forecast.weather + "");
-                meteoElt.id = "meteo";
+                meteoElt.classList.add("meteo");
 
                 var tempElt = document.createElement("div");
 
                 var tminElt = document.createElement("p");
                 tminElt.textContent = meteo.forecast.tmin + "°C";
-                tminElt.id = "tmin";
 
                 var tmaxElt = document.createElement("p");
                 tmaxElt.textContent = meteo.forecast.tmax + "°C";
+                tmaxElt.classList.add("tmax");
 
-
-                prevElt.appendChild(jourElt);
+                prevElt.appendChild(dateElt);
                 prevElt.appendChild(meteoElt);
                 tempElt.appendChild(tminElt);
                 tempElt.appendChild(document.createElement("hr"));
@@ -119,21 +219,75 @@ function getMeteo(ci, selection) {
             });
             break;
         case "par-tranche":
-            break;
-    }
 
+            ajaxGet(par_tranche + ci, function(reponse) {
+
+                var meteo = JSON.parse(reponse);
+
+                var h3Elt = document.createElement("h3");
+                h3Elt.id = "nom";
+                h3Elt.textContent = meteo.city.name;
+
+                document.body.insertBefore(h3Elt, infosElt);
+
+                for (var i = 0; i < 4; i++) {
+
+                    var prevElt = document.createElement("div");
+                    prevElt.classList.add("prevision");
+
+                    var trancheElt = document.createElement("p");
+                    var tranche;
+
+                    switch (meteo.forecast[0][i].period) {
+                        case 0:
+                            tranche = "02h - 08h";
+                            break;
+                        case 1:
+                            tranche = "08h - 14h";
+                            break;
+                        case 2:
+                            tranche = "14h - 20h";
+                            break;
+                        case 3:
+                            tranche = "20h - 02h";
+                            break;
+
+                    }
+                    trancheElt.textContent = tranche;
+
+                    var meteoElt = document.createElement("p");
+                    meteoElt.textContent = maMap.get(meteo.forecast[0][i].weather + "");
+                    meteoElt.classList.add("meteo");
+
+                    var tempElt = document.createElement("div");
+
+                    var tmaxElt = document.createElement("p");
+                    tmaxElt.textContent = meteo.forecast[0][i].temp2m + "°C";
+
+
+                    prevElt.appendChild(trancheElt);
+                    prevElt.appendChild(meteoElt);
+                    tempElt.appendChild(tmaxElt);
+                    prevElt.appendChild(tempElt);
+
+                    infosElt.appendChild(prevElt);
+                };
+
+            });
+
+            break;
+    }*/
 }
 
+/*function getSelection() {
 
-function getSelection() {
-
-    if (document.querySelector("form p").style.display === "block") {
+    if (getComputedStyle(document.getElementById("pc-choice")).display === "block") {
         return document.querySelector("form").elements.mode.value;
     } else {
         return document.getElementById("mobile-choice").options[document.getElementById("mobile-choice").selectedIndex].value;
     }
 
-}
+}*/
 
 infosElt.addEventListener("submit", function(e) {
     e.preventDefault();
@@ -148,7 +302,7 @@ document.getElementById("code").addEventListener("keydown", function(e) {
 
 document.getElementById("code").addEventListener("keyup", function(e) {
 
-    cp = document.getElementById("code").value + "";
+    var cp = document.getElementById("code").value + "";
 
     villesTrouve = [];
     villesUnique = [];
@@ -224,8 +378,10 @@ document.getElementById("code").addEventListener("keyup", function(e) {
                 infosElt.innerHTML = "";
                 sugElts.style.borderWidth = "0px";
 
-                var selection = getSelection();
-                getMeteo(e.target.id, selection);
+                //var selection = getSelection();
+                getMeteo(e.target.id);
+
+                ci = e.target.id;
             });
 
             document.getElementById("suggestions").appendChild(suggestionElt);
@@ -248,13 +404,5 @@ document.getElementById("code").addEventListener("keyup", function(e) {
     } else {
         sugElts.style.borderWidth = "0px";
     }
-
-
-
-    /*document.getElementById("nom").textContent = meteo.city.name;
-    document.getElementById("meteo").textContent = meteo.forecast[0].weather;
-    document.getElementById("tmin").textContent = meteo.forecast[0].tmin;
-    document.getElementById("tmax").textContent = meteo.forecast[0].tmax;*/
-
 
 });

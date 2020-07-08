@@ -1,11 +1,6 @@
 @font-face {
-    font-family: "logo";
-    src: url('../fonts/ONEDAY.otf') format('opentype');
-}
-
-@font-face {
     font-family: "sk";
-    src: url('../fonts/Sk-Modernist-Bold.otf') format('opentype');
+    src: url('../fonts/Sk-Modernist-Regular.otf') format('opentype');
 }
 
 body {
@@ -13,7 +8,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
+    padding-bottom: 1em;
+}
+
+body>hr {
+    max-width: 25%;
+    width: 25%;
+    border: 0;
+    margin: 2em 0;
 }
 
 #renseignements {
@@ -23,10 +27,8 @@ body {
 }
 
 #renseignements h1 {
-    min-width: max-content;
-    overflow: hidden;
-    white-space: nowrap;
-    margin: 0.5em 1em;
+    margin: 1em;
+    margin-top: 0;
 }
 
 form {
@@ -36,67 +38,83 @@ form {
 }
 
 #infos {
-    /*display: none;*/
     display: flex;
-    justify-content: center;
+    flex-flow: row nowrap;
+    max-width: fit-content;
     width: 75%;
-    flex-flow: row wrap;
+    overflow-x: auto;
 }
 
-.prevision {
-    width: 6.5em;
-    height: 12em;
+#infos-spe {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.prevision,
+.prevision-spe {
+    height: 14em;
     padding: 0.5em;
-    margin: 4px;
-    margin-top: 2em;
-    /*border: 2px solid black;
-    border-radius: 16px;*/
+    margin: 6px;
+    min-width: 6.5em;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
     justify-content: space-between;
-    background-color: lightgray;
+    background-color: #F9F9F9;
+    box-shadow: 3px 3px 7px lightgrey;
+    border: 1px solid lightgray;
 }
 
-.prevision hr {
-    width: 100%;
-    border: 1px solid black;
+.prevision-spe {
+    border-left: 6px solid #FBFBFB;
 }
 
-.prevision h3 {
-    margin: 0;
-    margin-bottom: 1em;
-}
-
-.prevision p:first-child {
+.prevision p:first-child,
+.prevision-spe p:first-child {
     margin: 0;
 }
 
-#temperature {
+.jour {
+    text-align: center;
+}
+
+.jour p {
+    margin: 0;
+}
+
+.temperature {
     display: flex;
     flex-flow: column wrap;
-    width: min-content;
     align-items: center;
 }
 
-#temperature hr {
-    border: 1px solid black;
+.temperature p {
+    text-align: center;
+}
+
+.temperature hr {
+    border: 1px solid grey;
     width: 30px;
     padding: 0;
     margin: 0.5em 0;
 }
 
-#temperature p {
+.temperature p {
     margin: 0;
 }
 
-#meteo {
+.meteo,
+.meteo-spe {
     text-align: center;
-    word-wrap: break-word;
 }
 
-#tmin {
+.meteo {
+    margin: 2em 0;
+}
+
+.tmax {
     color: red;
+    margin: 0;
 }
 
 
@@ -143,18 +161,39 @@ form {
 /*tous plus grand qu'une tablette*/
 
 @media screen and (max-width: 560px) {
-    form p {
-        display: flex;
-        flex-direction: row;
-    }
-    .prevision {
-        margin-top: 4px;
-    }
     #pc-choice {
         display: none;
     }
     #mobile-choice {
         display: block;
         margin-top: 1em;
+    }
+    .jour {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+    #infos,
+    #infos-spe {
+        width: 100%;
+    }
+    #infos-spe {
+        flex-direction: column;
+    }
+    .prevision {
+        min-width: 4em;
+        height: auto;
+    }
+    .prevision-spe {
+        height: auto;
+        margin: 4px 0;
+    }
+    #renseignements h1 {
+        font-size: 1.75em;
+    }
+    body>hr {
+        max-width: 50%;
+        width: 50%;
     }
 }
