@@ -73,13 +73,18 @@ function getMeteo(ci) {
                 var dateElt = document.createElement("div");
                 dateElt.classList.add("jour");
 
-                var jourDansLeMois = (date.getDate() + i) % (daysInMonth(date.getFullYear(), date.getMonth()) + 1);
+                var jourDansLeMois = daysInMonth(date.getFullYear(), date.getMonth());
+                var numDuJour = date.getDate() + i;
+
+                if (numDuJour > jourDansLeMois) {
+                    numDuJour -= jourDansLeMois;
+                }
 
                 var jourElt = document.createElement("p");
                 jourElt.textContent = "" + days[((date.getDay() + i) % 7)];
 
                 var nbJourElt = document.createElement("p");
-                nbJourElt.textContent = "" + jourDansLeMois;
+                nbJourElt.textContent = "" + numDuJour;
 
                 dateElt.appendChild(jourElt);
                 dateElt.appendChild(nbJourElt);
