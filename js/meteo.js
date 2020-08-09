@@ -22,6 +22,12 @@ function daysInMonth(year, month) {
 function getMeteo(ci) {
 
     infosElt.innerHTML = "";
+    var h3Elt = document.getElementById("nom");
+    if (h3Elt !== null) {
+        h3Elt.remove();
+    }
+
+    document.getElementById("infos-spe").innerHTML = "";
 
     var date = new Date();
 
