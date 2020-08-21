@@ -55,9 +55,9 @@ form {
 .prevision-spe {
     height: 14em;
     padding: 0.5em;
-    margin: 6px;
     width: 0;
     min-width: 6.5em;
+    margin: 6px;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -185,6 +185,7 @@ form {
     .prevision-spe {
         height: auto;
         margin: 4px 0;
+        width: auto;
     }
     #renseignements h1 {
         font-size: 1.75em;
