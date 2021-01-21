@@ -53,7 +53,7 @@ form {
 
 .prevision,
 .prevision-spe {
-    height: 14em;
+    min-height: 14em;
     padding: 0.5em;
     width: 0;
     min-width: 6.5em;

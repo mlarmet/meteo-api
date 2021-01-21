@@ -151,13 +151,13 @@ function getMeteo(ci) {
 
                             if (witch === 0) {
                                 if (i === 0 && (date.getHours() >= 2 && date.getHours() < 8)) {
-                                    prevSpeElt.style.borderLeft = "6px solid black";
+                                    prevSpeElt.style.borderTop = "6px solid black";
                                 } else if (i === 1 && (date.getHours() >= 8 && date.getHours() < 14)) {
-                                    prevSpeElt.style.borderLeft = "6px solid black";
+                                    prevSpeElt.style.borderTop = "6px solid black";
                                 } else if (i === 2 && (date.getHours() >= 14 && date.getHours() < 20)) {
-                                    prevSpeElt.style.borderLeft = "6px solid black";
+                                    prevSpeElt.style.borderTop = "6px solid black";
                                 } else if (i === 3 && ((date.getHours() >= 20 && date.getHours() <= 23) || (date.getHours() >= 0 && date.getHours() < 2))) {
-                                    prevSpeElt.style.borderLeft = "6px solid black";
+                                    prevSpeElt.style.borderTop = "6px solid black";
                                 }
                             }
 
