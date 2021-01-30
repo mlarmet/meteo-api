@@ -5,117 +5,274 @@
 
 body {
     font-family: "sk";
+    position: relative;
+    margin: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 1em 1em;
+    /* background: linear-gradient(35deg, #22244A, #5728A3); */
+    /* background: linear-gradient(35deg, #19094A, #61359A); */
+    /* background: linear-gradient(35deg, #1C2F4B, #615CBF); */
+    background: linear-gradient(35deg, #0E2453, #3578B1);
+    height: 100vh;
+    /* overflow: hidden; */
 }
 
-body>hr {
-    max-width: 25%;
-    width: 25%;
+#meteo {
+    display: none;
+}
+
+#changeCP {
+    cursor: pointer;
+}
+
+
+/*#popup {
+    display: none!important;
+}*/
+
+#left-side img {
+    width: 125px;
+    margin-left: -1.75em;
+}
+
+#right-side img {
+    width: 50px;
+}
+
+#bottom-side img {
+    width: 75px;
+}
+
+#left-side img,
+#right-side img,
+#bottom-side img {
+    margin-top: -0.5em;
+}
+
+#meteo #first-ligne {
+    display: flex;
+    align-items: center;
+}
+
+#left-side,
+#right-side,
+#bottom-side {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    padding: 1em;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    transition: all 250ms ease-in-out;
+}
+
+#meteo p,
+#meteo h3,
+#meteo h2 {
+    margin: 0;
+}
+
+#left-side {
+    position: relative;
+    height: 300px;
+    width: 200px;
+    border-radius: 20px;
+    z-index: 2;
+    overflow: hidden;
+}
+
+#illu {
+    position: absolute;
+    display: block;
+    height: 300px;
+    width: 200px;
+    padding: 2em;
+    top: 0;
+    left: 0;
+    background: url("../images/matin-soir.png");
+    z-index: -1;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#info-day p {
+    font-size: 1em;
+}
+
+#info-day h3 {
+    font-size: 1.75em;
+}
+
+#data h2 {
+    font-size: 2.5em;
+}
+
+#right-side {
+    color: #F3F3F3;
+    background-color: #212121;
+    height: 300px;
+    width: calc(220px + 1em);
+    border-radius: 0 20px 20px 0;
+    margin-left: -1em;
+    /*reset negative margin left*/
+    padding-left: 2em!important;
+    z-index: 1;
+}
+
+#other-data>div {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin: 0.5em 0;
+    font-size: 0.8em;
+}
+
+#other-day {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #212121;
+}
+
+.data-name {
+    font-weight: bold;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+}
+
+.day {
+    height: 80px;
+    width: 40px;
+    border-radius: 10px;
+    padding: 0.5em;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+    transform: scale(1);
+    transition: all 250ms ease-in-out;
+}
+
+.day.active,
+.day.selected {
+    background-color: #F3F3F3;
+    color: black;
+    cursor: pointer;
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    overflow: hidden;
+}
+
+.day h3 {
+    font-size: 1em;
+}
+
+#right-side a {
+    display: block;
+    background-color: #F3F3F3;
     border: 0;
-    margin: 2em 0;
+    border-radius: 20px;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+}
+
+#bottom-side {
+    height: 100px;
+    border-radius: 20px;
+    flex-basis: 100%;
+    margin-top: 1em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 1em 0;
+    color: #F3F3F3;
+    background-color: #212121;
+}
+
+.period {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.period p {
+    font-size: 1.25em;
+}
+
+.period h3 {
+    font-size: 1.5em;
+}
+
+#popup {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    width: 100%;
+    height: 100%;
 }
 
 #renseignements {
     display: flex;
-    flex-flow: column wrap;
-    align-items: center;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: center;
+    position: absolute;
+    height: fit-content;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1em 2em;
+    background-color: #F3F3F3;
+    color: #F3F3F3;
+    background-color: #212121;
+    border-radius: 20px;
+    max-width: 100%;
+}
+
+#renseignements input {
+    display: inline-block;
+    border: 2px solid #F3F3F3;
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: "sk";
+    padding: 0.5em 1em;
+    color: #F3F3F3;
+    background-color: #212121;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 #renseignements h1 {
-    margin: 1em;
     margin-top: 0;
+    margin-bottom: 1em;
+    font-size: 1.75em;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#infos {
-    display: flex;
-    flex-flow: row nowrap;
-    width: 75%;
-    max-width: fit-content;
-    max-width: -moz-fit-content;
-    overflow-x: auto;
-}
-
-#infos-spe {
-    display: flex;
-    flex-flow: row nowrap;
-}
-
-.prevision,
-.prevision-spe {
-    min-height: 14em;
-    padding: 0.5em;
-    width: 0;
-    min-width: 6.5em;
-    margin: 6px;
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #F9F9F9;
-    box-shadow: 3px 3px 7px lightgrey;
-}
-
-.prevision p:first-child,
-.prevision-spe p:first-child {
-    margin: 0;
-}
-
-.jour {
-    text-align: center;
-}
-
-.jour p {
-    margin: 0;
-}
-
-.temperature {
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-}
-
-.temperature p {
-    text-align: center;
-}
-
-.temperature hr {
-    border: 1px solid grey;
-    width: 30px;
-    padding: 0;
-    margin: 0.5em 0;
-}
-
-.temperature p {
-    margin: 0;
-}
-
-.meteo,
-.meteo-spe {
-    text-align: center;
-}
-
-.meteo {
-    margin: 2em 0;
-}
-
-.tmax {
-    color: red;
-    margin: 0;
+    width: 100%;
 }
 
 
-/* Augmente l'espacement gauche et droite des suggestions */
+/*Augmente l'espacement gauche et droite des suggestions */
 
 .suggestion,
 .more {
@@ -128,70 +285,18 @@ form {
 /* Modifie la couleur de la suggestion survolée par la souris */
 
 .suggestion:hover {
-    background-color: #adf;
+    background-color: #F3F3F3;
+    color: #212121;
     cursor: pointer;
 }
 
 
 /* Positionne la liste des suggestions au-dessous de la zone de saisie */
 
-#code {
-    width: 20em;
-}
-
 #suggestions {
-    background-color: white;
-    border: 0px solid black;
+    color: #F3F3F3;
+    background-color: #212121;
+    border: 0px solid #212121;
     font-size: medium;
     position: absolute;
-}
-
-#pc-choice {
-    display: block;
-}
-
-#mobile-choice {
-    display: none;
-}
-
-
-/*tous plus grand qu'une tablette*/
-
-@media screen and (max-width: 560px) {
-    #pc-choice {
-        display: none;
-    }
-    #mobile-choice {
-        display: block;
-        margin-top: 1em;
-    }
-    .jour {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        justify-content: space-evenly;
-    }
-    #infos,
-    #infos-spe {
-        width: 100%;
-    }
-    #infos-spe {
-        flex-direction: column;
-    }
-    .prevision {
-        min-width: 4em;
-        height: auto;
-    }
-    .prevision-spe {
-        height: auto;
-        margin: 4px 0;
-        width: auto;
-    }
-    #renseignements h1 {
-        font-size: 1.75em;
-    }
-    body>hr {
-        max-width: 50%;
-        width: 50%;
-    }
 }

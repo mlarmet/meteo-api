@@ -4,221 +4,120 @@
 <head>
     <meta charset="utf-8">
     <title>Meteo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" /> -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
 <body>
 
-    <div id="renseignements">
-        <h1>Code postal de la ville :</h1>
-        <form>
-            <div id="entry">
-                <input type="text" name="code" id="code" placeholder="Saisissez le code postal" required>
-                <div id="suggestions"></div>
-            </div>
-            <!-- 
-            <p id="pc-choice">
-                <input type="radio" name="mode" id="deux-semaines" value="deux-semaines" checked>
-                <label for="deux-semaines">2 semaines</label>
-                <input type="radio" name="mode" id="le-jour" value="le-jour">
-                <label for="le-jour">Météo du jour</label>
-                <input type="radio" name="mode" id="par-tranche" value="par-tranche">
-                <label for="par-tranche">Météo par tranche</label>
-            </p>
-
-            <select id="mobile-choice">
-                <option value="deux-semaines">2 semaines</option>
-                <option value="le-jour">Ce jour</option>
-                <option value="par-tranche">Par tranche</option>
-            </select> -->
-        </form>
+    <div id="popup">
+        <div id="renseignements">
+            <h1>Code postal de la ville :</h1>
+            <form>
+                <div id="entry">
+                    <input type="text" name="code" id="code" placeholder="Saisissez le code postal" required="">
+                    <div id="suggestions"></div>
+                </div>
+            </form>
+        </div>
     </div>
 
-    <!-- <h2 id="nom">Louargat</h2> -->
+    <div id="meteo">
+        <div id="first-ligne">
 
+            <div id="left-side">
+                <div id="illu"></div>
+                <div id="info-day">
+                    <h3>jour smeaine</h3>
+                    <p>jour mois annee</p>
+                    <p>LaVille</p>
+                </div>
+                <div id="data">
+                    <img src="images/icons/SVG/soleil-black.svg" />
+                    <h2>58°C</h2>
+                    <p>soleil ou pas</p>
 
-    <div id="infos">
-        <!-- <div class="prevision">
-            <div class="jour">
-                <p>Jeu</p>
-                <p>8</p>
+                </div>
             </div>
+            <div id="right-side">
+                <div id="other-data">
+                    <!-- <div id="time">
+                    <p class="data-name">Heure</p>
+                    <p class="data-value">entre 2 h et 8 h</p>
+                </div> -->
+                    <!-- <div id="humidite">
+                    <p class="data-name">Humidite</p>
+                    <p class="data-value">73%</p>
+                </div> -->
+                    <div id="vent">
+                        <p class="data-name">Vent</p>
+                        <p class="data-value">0 km/h</p>
+                    </div>
+                </div>
 
-            <p id="meteo">Nuageux</p>
+                <div id="other-day">
+                    <div id="zero" class="selected day">
+                        <img src="images/icons/SVG/soleil-black.svg" />
+                        <p>Mar</p>
+                        <h3>29°C</h3>
+                    </div>
+                    <div id="un" class="day">
+                        <img src="images/icons/SVG/soleil-white.svg" />
+                        <p>Mar</p>
+                        <h3>29°C</h3>
+                    </div>
+                    <div id="deux" class="day">
+                        <img src="images/icons/SVG/soleil-white.svg" />
+                        <p>Mar</p>
+                        <h3>29°C</h3>
+                    </div>
+                    <div id="trois" class="day">
+                        <img src="images/icons/SVG/soleil-white.svg" />
+                        <p>Mar</p>
+                        <h3>29°C</h3>
+                    </div>
+                </div>
 
-            <div id="temperature">
-                <p id="tmin">10°C</p>
-                <hr/>
-                <p>20°C</p>
-
-            </div>
-        </div>
-
-        <div class="prevision">
-            <p>Demain</p>
-            <p id="meteo">Pluit modérée mais attention</p>
-
-            <div id="temperature">
-                <p id="tmin">11°C</p>
-                <hr/>
-                <p>20°C</p>
-
-            </div>
-        </div>
-
-        <div class="prevision">
-            <p>Dans 2 jours</p>
-            <p id="meteo">Nuageux</p>
-
-            <div id="temperature">
-                <p id="tmin">10°C</p>
-                <hr/>
-                <p>20°C</p>
-
-            </div>
-        </div>
-
-        <div class="prevision">
-            <p>Dans 3 jours</p>
-            <p id="meteo">Nuageux</p>
-
-            <div id="temperature">
-                <p id="tmin">10°C</p>
-                <hr/>
-                <p>20°C</p>
-
-            </div>
-        </div>
-
-        <div class="prevision">
-            <p>Dans 10 jours</p>
-            <p id="meteo">Nuageux</p>
-
-            <div id="temperature">
-                <p id="tmin">10°C</p>
-                <hr/>
-                <p>20°C</p>
-
+                <a id="changeCP">Changer la localisation</a>
             </div>
         </div>
 
-        <div class="prevision">
-            <p>Dans 13 jours</p>
-            <p id="meteo">Nuageux</p>
-
-            <div id="temperature">
-                <p id="tmin">10°C</p>
-                <hr/>
-                <p>20°C</p>
-
+        <div id="bottom-side">
+            <div id="matin" class="period">
+                <div>
+                    <p>Matin</p>
+                    <h3>29°C</h3>
+                </div>
+                <img src="images/icons/SVG/soleil-white.svg" />
+            </div>
+            <div id="midi" class="period">
+                <div>
+                    <p>Midi</p>
+                    <h3>29°C</h3>
+                </div>
+                <img src="images/icons/SVG/soleil-white.svg" />
+            </div>
+            <div id="soir" class="period">
+                <div>
+                    <p>Soir</p>
+                    <h3>29°C</h3>
+                </div>
+                <img src="images/icons/SVG/soleil-white.svg" />
+            </div>
+            <div id="nuit" class="period">
+                <div>
+                    <p>Nuit</p>
+                    <h3>29°C</h3>
+                </div>
+                <img src="images/icons/SVG/soleil-white.svg" />
             </div>
         </div>
-        <div class="prevision">
-            <p>Aujourd'hui</p>
-            <p id="meteo">Nuageux</p>
-
-            <div id="temperature">
-                <p id="tmin">10°C</p>
-                <hr/>
-                <p>20°C</p>
-
-            </div>
-        </div>
-
-        <div class="prevision">
-            <p>Demain</p>
-            <p id="meteo">Pluit modérée mais attention</p>
-
-            <div id="temperature">
-                <p id="tmin">11°C</p>
-                <hr/>
-                <p>20°C</p>
-
-            </div>
-        </div>
-
-        <div class="prevision">
-            <p>Dans 2 jours</p>
-            <p id="meteo">Nuageux</p>
-
-            <div id="temperature">
-                <p id="tmin">10°C</p>
-                <hr/>
-                <p>20°C</p>
-
-            </div>
-        </div>
-
-        <div class="prevision">
-            <p>Dans 3 jours</p>
-            <p id="meteo">Nuageux</p>
-
-            <div id="temperature">
-                <p id="tmin">10°C</p>
-                <hr/>
-                <p>20°C</p>
-
-            </div>
-        </div>
-
-        <div class="prevision">
-            <p>Dans 10 jours</p>
-            <p id="meteo">Nuageux</p>
-
-            <div id="temperature">
-                <p id="tmin">10°C</p>
-                <hr/>
-                <p>20°C</p>
-
-            </div>
-        </div>
-
-        <div class="prevision">
-            <p>Dans 13 jours</p>
-            <p id="meteo">Nuageux</p>
-
-            <div id="temperature">
-                <p id="tmin">10°C</p>
-                <hr/>
-                <p>20°C</p>
-
-            </div>
-        </div>
-
-        <div class="prevision">
-            <p>Dans 10 jours</p>
-            <p id="meteo">Nuageux</p>
-
-            <div id="temperature">
-                <p id="tmin">10°C</p>
-                <hr/>
-                <p>20°C</p>
-
-            </div>
-        </div>
-
-        <div class="prevision">
-            <p>Dans 13 jours</p>
-            <p id="meteo">Nuageux</p>
-
-            <div id="temperature">
-                <p id="tmin">10°C</p>
-                <hr/>
-                <p>20°C</p>
-
-            </div>
-        </div> -->
-
     </div>
-
-    <hr/>
-
-    <div id="infos-spe"></div>
 
     <script src="js/data.js"></script>
     <script src="js/ajax.js"></script>
-    <script src="js/meteo.js"></script>
+    <script src="js/new-meteo.js"></script>
+
 </body>
 
 </html>
