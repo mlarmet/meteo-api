@@ -84,7 +84,8 @@ function getIcon(x) {
     } else if ((x >= 100 && x <= 108) || (x >= 120 && x <= 128) || (x >= 130 && x <= 138)) {
         icon = "orage";
     } else {
-        icon = "else"
+        icon = "else";
+        console.log(x);
     }
 
     return icon;
@@ -115,21 +116,17 @@ function getMeteo(ci) {
             document.getElementById("illu").style.background = "url('images/nuit.png')";
             document.getElementById("illu").style.backgroundPositionY = '0px';
         }
-
-
         if (heure >= 8 && heure < 14) {
 
             laPeriode = laMeteo.forecast[0][2];
             document.getElementById("illu").style.background = "url('images/midi.png')";
             document.getElementById("illu").style.backgroundPositionY = '-130px';
         }
-
         if (heure >= 14 && heure < 20) {
             laPeriode = laMeteo.forecast[0][3];
             document.getElementById("illu").style.background = "url('images/matin-soir.png')";
             document.getElementById("illu").style.backgroundPositionY = '-120px';
         }
-
         if (heure >= 20 || heure < 2) {
             laPeriode = laMeteo.forecast[0][0];
             document.getElementById("illu").style.background = "url('images/nuit.png')";
@@ -150,6 +147,7 @@ function getMeteo(ci) {
         tempElt.textContent = laPeriode.temp2m + "°C";
 
         let iconName = getIcon(laPeriode.weather);
+        console.log(laPeriode.weather, iconName);
 
         leftSide.querySelector("#data img").setAttribute("src", "images/icons/SVG/" + iconName + "-black.svg");
 
@@ -171,7 +169,6 @@ function getMeteo(ci) {
                 laPeriode = laMeteo.forecast[0][i];
             }
 
-            var meteoTranche = maMap.get(laPeriode.weather + "");
             var periodElt;
 
             switch (i) {
@@ -189,13 +186,7 @@ function getMeteo(ci) {
                     break;
             }
             let iconName = getIcon(laPeriode.weather);
-
-            if (!rightSide.querySelectorAll(".day")[i - 1].classList.contains("selected")) {
-                (rightSide.querySelectorAll(".day")[i - 1]).querySelector("img").setAttribute("src", "images/icons/SVG/" + iconName + "-white.svg");
-            } else {
-                (rightSide.querySelectorAll(".day")[i - 1]).querySelector("img").setAttribute("src", "images/icons/SVG/" + iconName + "-black.svg");
-            }
-            //updateSVGColor(rightSide.querySelectorAll(".day")[i - 1]);
+            (bottomSide.querySelectorAll(".period")[i - 1]).querySelector("img").setAttribute("src", "images/icons/SVG/" + iconName + "-white.svg");
 
             periodElt.querySelector("h3").textContent = laPeriode.temp2m + " °C";
 
@@ -206,7 +197,6 @@ function getMeteo(ci) {
 
             leJour = laMeteo.forecast[i][2];
 
-            var meteoTranche = maMap.get(leJour.weather + "");
             var prochainJourElt;
 
             switch (i) {
@@ -229,13 +219,15 @@ function getMeteo(ci) {
             } else {
                 prochainJourElt.querySelector("p").textContent = days[(date.getDay() + i) % (days.length - 1)];
             }
+
             prochainJourElt.querySelector("h3").textContent = leJour.temp2m + " °C";
 
-
-            let iconName = getIcon(laPeriode.weather);
-            bottomSide.querySelectorAll(".period")[i].querySelector("img").setAttribute("src", "images/icons/SVG/" + iconName + "-white.svg");
-
-            periodElt.querySelector("h3").textContent = laPeriode.temp2m + " °C";
+            let iconName = getIcon(leJour.weather);
+            if (!rightSide.querySelectorAll(".day")[i].classList.contains("selected")) {
+                (rightSide.querySelectorAll(".day")[i]).querySelector("img").setAttribute("src", "images/icons/SVG/" + iconName + "-white.svg");
+            } else {
+                (rightSide.querySelectorAll(".day")[i]).querySelector("img").setAttribute("src", "images/icons/SVG/" + iconName + "-black.svg");
+            }
 
         }
 
