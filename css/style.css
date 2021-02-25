@@ -3,6 +3,12 @@
     src: url('../fonts/Sk-Modernist-Regular.otf') format('opentype');
 }
 
+*,
+*:before,
+*:after {
+    box-sizing: border-box !important;
+}
+
 body {
     font-family: "sk";
     position: relative;
@@ -15,22 +21,24 @@ body {
     /* background: linear-gradient(35deg, #19094A, #61359A); */
     /* background: linear-gradient(35deg, #1C2F4B, #615CBF); */
     background: linear-gradient(35deg, #0E2453, #3578B1);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     height: 100vh;
     /* overflow: hidden; */
 }
 
 #meteo {
-    display: none;
+    /* display: none; */
 }
 
 #changeCP {
     cursor: pointer;
 }
 
-
-/*#popup {
+#popup {
     display: none!important;
-}*/
+}
 
 #left-side img {
     width: 125px;
@@ -75,8 +83,8 @@ body {
 
 #left-side {
     position: relative;
-    height: 300px;
-    width: 200px;
+    height: 320px;
+    width: 230px;
     border-radius: 20px;
     z-index: 2;
     overflow: hidden;
@@ -85,9 +93,8 @@ body {
 #illu {
     position: absolute;
     display: block;
-    height: 300px;
-    width: 200px;
-    padding: 2em;
+    height: 100%;
+    width: 100%;
     top: 0;
     left: 0;
     background: url("../images/matin-soir.png");
@@ -111,12 +118,12 @@ body {
 #right-side {
     color: #F3F3F3;
     background-color: #212121;
-    height: 300px;
-    width: calc(220px + 1em);
+    height: 320px;
+    width: calc(270px + 1em);
     border-radius: 0 20px 20px 0;
     margin-left: -1em;
     /*reset negative margin left*/
-    padding-left: 2em!important;
+    padding-left: 2em;
     z-index: 1;
 }
 
@@ -145,8 +152,8 @@ body {
 }
 
 .day {
-    height: 80px;
-    width: 40px;
+    height: 100px;
+    width: 60px;
     border-radius: 10px;
     padding: 0.5em;
     display: flex;
@@ -184,7 +191,6 @@ body {
 }
 
 #bottom-side {
-    height: 100px;
     border-radius: 20px;
     flex-basis: 100%;
     margin-top: 1em;
@@ -299,4 +305,46 @@ form {
     border: 0px solid #212121;
     font-size: medium;
     position: absolute;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        padding: 2em;
+        display: block;
+        height: fit-content;
+        width: fit-content;
+        margin: 0 auto;
+    }
+    #meteo {
+        width: 320px;
+    }
+    #first-ligne {
+        flex-flow: column nowrap;
+        width: 100%;
+    }
+    #left-side {
+        width: 100%;
+    }
+    #right-side {
+        width: 100%;
+        border-radius: 20px;
+        margin-left: 0;
+        margin-top: 1em;
+        padding-left: 1em;
+    }
+    #bottom-side {
+        flex-flow: column nowrap;
+        border-radius: 20px;
+        width: 100%;
+        padding: 1em;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    body {
+        padding: 2em 1em;
+    }
+    #meteo {
+        width: 270px;
+    }
 }
