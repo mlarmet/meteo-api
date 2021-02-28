@@ -29,7 +29,7 @@ body {
 }
 
 #meteo {
-    /* display: none; */
+    display: none;
 }
 
 #changeCP {
@@ -37,7 +37,7 @@ body {
 }
 
 #popup {
-    display: none!important;
+    /* display: none!important; */
 }
 
 #left-side img {
