@@ -1,350 +1,340 @@
 @font-face {
-    font-family: "sk";
-    src: url('../fonts/Sk-Modernist-Regular.otf') format('opentype');
+	font-family: "sk";
+	src: url("../fonts/Sk-Modernist-Regular.otf") format("opentype");
 }
 
 *,
 *:before,
 *:after {
-    box-sizing: border-box !important;
+	box-sizing: border-box !important;
 }
 
 body {
-    font-family: "sk";
-    position: relative;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    /* background: linear-gradient(35deg, #22244A, #5728A3); */
-    /* background: linear-gradient(35deg, #19094A, #61359A); */
-    /* background: linear-gradient(35deg, #1C2F4B, #615CBF); */
-    background: linear-gradient(35deg, #0E2453, #3578B1);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    height: 100vh;
-    /* overflow: hidden; */
+	font-family: "sk";
+	position: relative;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	/* background: linear-gradient(35deg, #22244A, #5728A3); */
+	/* background: linear-gradient(35deg, #19094A, #61359A); */
+	/* background: linear-gradient(35deg, #1C2F4B, #615CBF); */
+	background: linear-gradient(35deg, #0e2453, #3578b1);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	min-height: 100vh;
+	/* overflow: hidden; */
 }
 
 #meteo {
-    display: none;
+	display: none;
 }
 
 #changeCP {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 #popup {
-    /* display: none!important; */
+	/* display: none!important; */
 }
 
 #left-side img {
-    width: 125px;
-    margin-left: -1.75em;
+	width: 125px;
+	margin-left: -1.75em;
 }
 
 #right-side img {
-    width: 50px;
+	width: 50px;
 }
 
 #bottom-side img {
-    width: 75px;
+	width: 75px;
 }
 
 #left-side img,
 #right-side img,
 #bottom-side img {
-    margin-top: -0.5em;
+	margin-top: -0.5em;
 }
 
 #meteo #first-ligne {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 #left-side,
 #right-side,
 #bottom-side {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    padding: 1em;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    transition: all 250ms ease-in-out;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-between;
+	padding: 1em;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+	transition: all 250ms ease-in-out;
 }
 
 #meteo p,
 #meteo h3,
 #meteo h2 {
-    margin: 0;
+	margin: 0;
 }
 
 #left-side {
-    position: relative;
-    height: 320px;
-    width: 230px;
-    border-radius: 20px;
-    z-index: 2;
-    overflow: hidden;
+	position: relative;
+	height: 320px;
+	width: 230px;
+	border-radius: 20px;
+	z-index: 2;
+	overflow: hidden;
 }
 
 #illu {
-    position: absolute;
-    display: block;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background: url("../images/matin-soir.png");
-    z-index: -1;
-    background-size: cover;
-    background-repeat: no-repeat;
+	position: absolute;
+	display: block;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: url("../images/matin-soir.png");
+	z-index: -1;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 #info-day p {
-    font-size: 1em;
+	font-size: 1em;
 }
 
 #info-day h3 {
-    font-size: 1.75em;
+	font-size: 1.75em;
 }
 
 #data h2 {
-    font-size: 2.5em;
+	font-size: 2.5em;
 }
 
 #right-side {
-    color: #F3F3F3;
-    background-color: #212121;
-    height: 320px;
-    width: calc(270px + 1em);
-    border-radius: 0 20px 20px 0;
-    margin-left: -1em;
-    /*reset negative margin left*/
-    padding-left: 2em;
-    z-index: 1;
+	color: #f3f3f3;
+	background-color: #212121;
+	height: 320px;
+	width: calc(270px + 1em);
+	border-radius: 0 20px 20px 0;
+	margin-left: -1em;
+	/*reset negative margin left*/
+	padding-left: 2em;
+	z-index: 1;
 }
 
-#other-data>div {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    margin: 0.5em 0;
-    font-size: 0.8em;
+#other-data > div {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	margin: 0.5em 0;
+	font-size: 0.8em;
 }
 
 #other-day {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    background-color: #212121;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background-color: #212121;
 }
 
 .data-name {
-    font-weight: bold;
-    letter-spacing: 1.25px;
-    text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 1.25px;
+	text-transform: uppercase;
 }
 
 .day {
-    height: 100px;
-    width: 60px;
-    border-radius: 10px;
-    padding: 0.5em;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    align-items: center;
-    transform: scale(1);
-    transition: all 250ms ease-in-out;
+	height: 100px;
+	width: 60px;
+	border-radius: 10px;
+	padding: 0.5em;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-between;
+	align-items: center;
+	transform: scale(1);
+	transition: all 250ms ease-in-out;
 }
 
 .day.active,
 .day.selected {
-    background-color: #F3F3F3;
-    color: black;
-    cursor: pointer;
-    transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    overflow: hidden;
+	background-color: #f3f3f3;
+	color: black;
+	cursor: pointer;
+	transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	overflow: hidden;
 }
 
 .day h3 {
-    font-size: 1em;
+	font-size: 1em;
 }
 
 #right-side a {
-    display: block;
-    background-color: #F3F3F3;
-    border: 0;
-    border-radius: 20px;
-    padding: 0.5em 1em;
-    text-decoration: none;
-    text-align: center;
-    color: black;
+	display: block;
+	background-color: #f3f3f3;
+	border: 0;
+	border-radius: 20px;
+	padding: 0.5em 1em;
+	text-decoration: none;
+	text-align: center;
+	color: black;
 }
 
 #bottom-side {
-    border-radius: 20px;
-    flex-basis: 100%;
-    margin-top: 1em;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    padding: 1em 0;
-    color: #F3F3F3;
-    background-color: #212121;
+	border-radius: 20px;
+	flex-basis: 100%;
+	margin-top: 1em;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+	align-items: center;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	padding: 1em 0;
+	color: #f3f3f3;
+	background-color: #212121;
 }
 
 .period {
-    display: flex;
-    flex-flow: column nowrap;
-    height: 100%;
-    justify-content: space-evenly;
-    align-items: center;
-    text-align: center;
+	display: flex;
+	flex-flow: column nowrap;
+	height: 100%;
+	justify-content: space-evenly;
+	align-items: center;
+	text-align: center;
 }
 
 .period p {
-    font-size: 1.25em;
+	font-size: 1.25em;
 }
 
 .period h3 {
-    font-size: 1.5em;
+	font-size: 1.5em;
 }
 
 #popup {
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 10;
-    width: 100%;
-    height: 100%;
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 10;
+	width: 100%;
+	height: 100%;
 }
 
 #renseignements {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: flex-start;
-    justify-content: center;
-    position: absolute;
-    height: fit-content;
-    width: 400px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 1em 2em;
-    background-color: #F3F3F3;
-    color: #F3F3F3;
-    background-color: #212121;
-    border-radius: 20px;
-    max-width: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: flex-start;
+	justify-content: center;
+	position: absolute;
+	height: fit-content;
+	width: 400px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 1em 2em;
+	background-color: #f3f3f3;
+	color: #f3f3f3;
+	background-color: #212121;
+	border-radius: 20px;
+	max-width: 100%;
 }
 
 #renseignements input {
-    display: inline-block;
-    border: 2px solid #F3F3F3;
-    border-radius: 5px;
-    font-size: 1em;
-    font-family: "sk";
-    padding: 0.5em 1em;
-    color: #F3F3F3;
-    background-color: #212121;
-    width: 100%;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+	display: inline-block;
+	border: 2px solid #f3f3f3;
+	border-radius: 5px;
+	font-size: 1em;
+	font-family: "sk";
+	padding: 0.5em 1em;
+	color: #f3f3f3;
+	background-color: #212121;
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 #renseignements h1 {
-    margin-top: 0;
-    margin-bottom: 1em;
-    font-size: 1.75em;
+	margin-top: 0;
+	margin-bottom: 1em;
+	font-size: 1.75em;
 }
 
 form {
-    width: 100%;
+	width: 100%;
 }
-
 
 /*Augmente l'espacement gauche et droite des suggestions */
 
 .suggestion,
 .more {
-    padding-left: 2px;
-    padding-right: 2px;
-    margin: 0.5em 0;
+	padding-left: 2px;
+	padding-right: 2px;
+	margin: 0.5em 0;
 }
-
 
 /* Modifie la couleur de la suggestion survolée par la souris */
 
 .suggestion:hover {
-    background-color: #F3F3F3;
-    color: #212121;
-    cursor: pointer;
+	background-color: #f3f3f3;
+	color: #212121;
+	cursor: pointer;
 }
-
 
 /* Positionne la liste des suggestions au-dessous de la zone de saisie */
 
 #suggestions {
-    color: #F3F3F3;
-    background-color: #212121;
-    border: 0px solid #212121;
-    font-size: medium;
-    position: absolute;
+	color: #f3f3f3;
+	background-color: #212121;
+	border: 0px solid #212121;
+	font-size: medium;
+	position: absolute;
 }
 
 @media screen and (max-width: 600px) {
-    body {
-        padding: 2em;
-        display: block;
-        height: fit-content;
-        width: fit-content;
-        margin: 0 auto;
-    }
-    #meteo {
-        width: 320px;
-    }
-    #first-ligne {
-        flex-flow: column nowrap;
-        width: 100%;
-    }
-    #left-side {
-        width: 100%;
-    }
-    #right-side {
-        width: 100%;
-        border-radius: 20px;
-        margin-left: 0;
-        margin-top: 1em;
-        padding-left: 1em;
-    }
-    #bottom-side {
-        flex-flow: column nowrap;
-        border-radius: 20px;
-        width: 100%;
-        padding: 1em;
-    }
+	body {
+		padding: 2em 0;
+	}
+	#meteo {
+		width: 320px;
+	}
+	#first-ligne {
+		flex-flow: column nowrap;
+		width: 100%;
+	}
+	#left-side {
+		width: 100%;
+	}
+	#right-side {
+		width: 100%;
+		border-radius: 20px;
+		margin-left: 0;
+		margin-top: 1em;
+		padding-left: 1em;
+	}
+	#bottom-side {
+		flex-flow: column nowrap;
+		border-radius: 20px;
+		width: 100%;
+		padding: 1em;
+	}
 }
 
 @media screen and (max-width: 400px) {
-    body {
-        padding: 2em 1em;
-    }
-    #meteo {
-        width: 270px;
-    }
+	#meteo {
+		width: 270px;
+	}
 }
